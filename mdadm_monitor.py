@@ -68,7 +68,8 @@ for array in arrays:
 		continue
 	#diskstatus = str(os.popen("smartctl -H /dev/" + disk + ' | grep -i \"SMART overall-health self-assessment test result: \"').read())
 #TEST	arraystatus = "clean, degraded, recovering"     #uncomment this line to trigger a test  
-	if "clean" in arraystatus and not "degraded" in arraystatus and not "recovering" in arraystatus: logger.info(array + " is OK and reports: " + arraystatus)
+	if ("clean" or "active" in arraystatus) and not "degraded" in arraystatus and not 
+"recovering" in arraystatus: logger.info(array + " is OK and reports: " + arraystatus)
 	else: 
 		logger.critical("WARNING ARRAY: " + array + " STATUS: " + arraystatus)
 		file.write(array + " IS NOT OK, status: " + "\n")
